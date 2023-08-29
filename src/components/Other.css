@@ -1,0 +1,50 @@
+.login{
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-bottom: 1px solid white;
+}
+.login-div{
+    padding-top: 20px;
+    margin-top: 20px;
+}
+.link-log{
+    padding-left: 2rem;
+    
+    text-decoration: none;
+    color: #fff;
+   
+}
+
+.link-cards{
+    text-decoration: none;
+    cursor: pointer;
+}
+.area-links{
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    font-size: 20px;
+    padding: 1rem;
+}
+
+.media{
+    transition: all 300ms ease-in-out;
+}
+
+.cards:hover .media{
+    transform: scale(1.1);
+    
+}
+.footer{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;   
+}
+.h5{
+    padding-top: 1rem;
+}
+.cart-div{
+    width: 100%;
+    align-items: center;
+    background-color:red
+}

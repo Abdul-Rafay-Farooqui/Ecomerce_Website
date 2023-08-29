@@ -1,0 +1,17 @@
+@media (max-width: 600px) {
+    /* Default styling for larger screens */
+.CartPageWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+  }
+  
+  /* Media query for screens up to 600px wide (mobile) */
+  @media (max-width: 600px) {
+    .CartPageWrapper {
+      flex-direction: column;
+    }
+  }
+  
+  }
