@@ -12,25 +12,25 @@ const Product = ({ product }) => {
   const data = [
     {
       id: "1",
-      picture: require("../images/prdouct-img1.jpg"),
+      picture: require("../components/images/prdouct-img1.jpg"),
       name: "Gucci Bag",
       price: 956
     },
     {
       id: "2",
-      picture: require("../images/prdouct-img2.jpg"),
+      picture: require("../components/images/prdouct-img2.jpg"),
       name: "Speakers",
       price: 1960
     },
     {
       id: "3",
-      picture: require("../images/prdouct-img3.jpg"),
+      picture: require("../components/images/prdouct-img3.jpg"),
       name: "Controller",
       price: 500
     },
     {
       id: "4",
-      picture: require("../images/product-img4.jpg"),
+      picture: require("../components/images/product-img4.jpg"),
       name: "Suit",
       price: 1000
     },
@@ -41,25 +41,25 @@ const Product = ({ product }) => {
   const data2 = [
     {
       id: "5",
-      picture: require("../images/data2-img1.jpg"),
+      picture: require("../components/images/data2-img1.jpg"),
       name: "Laptop",
       price: 3200
     },
     {
       id: "6",
-      picture: require("../images/data2-img2.jpg"),
+      picture: require("../components/images/data2-img2.jpg"),
       name: "Keyboard",
       price: 500
     },
     {
       id: "7",
-      picture: require("../images/data2-img3.jpg"),
+      picture: require("../components/images/data2-img3.jpg"),
       name: "Moniter",
       price: 1000
     },
     {
       id: "8",
-      picture: require("../images/data2-img4.jpg"),
+      picture: require("../components/images/data2-img4.jpg"),
       name: "Phone",
       price: 1500
     },

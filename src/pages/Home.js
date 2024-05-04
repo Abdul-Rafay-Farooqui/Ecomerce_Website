@@ -8,16 +8,16 @@ import Slider from 'react-slick';
 const Home = () => {
   const images = [
     {
-      image: require("../images/slider-pic-1.jpg")
+      image: require("../components/images/slider-pic-1.jpg")
     },
     {
-      image: require("../images/slider-pic-2.jpg")
+      image: require("../components/images/slider-pic-2.jpg")
     },
     {
-      image: require("../images/slider-pic-3.jpg")
+      image: require("../components/images/slider-pic-3.jpg")
     },
     {
-      image: require("../images/bannar.jpg")
+      image: require("../components/images/bannar.jpg")
     }
   ];
 
