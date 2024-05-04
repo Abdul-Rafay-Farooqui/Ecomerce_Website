@@ -14,22 +14,22 @@ const MediaCard = () => {
         {
             title: "Soft dresses",
             subtitle: "Here you have confortable dresses",
-            picture: require("../images/pic1.jpg")
+            picture: require("./images/pic1.jpg")
         },
         {
             title: "Deals on Top Brands",
             subtitle: "Here you can find best deals",
-            picture: require("../images/pic2.jpg")
+            picture: require("./images/pic2.jpg")
         },
         {
             title: "Costomers favorite",
             subtitle: "Here are your most favourate",
-            picture: require("../images/pic3.jpg")
+            picture: require("./images/pic3.jpg")
         },
         {
             title: "Best Sellers in Outlet",
             subtitle: "Here are our best",
-            picture: require("../images/pic4.jpg")
+            picture: require("./images/pic4.jpg")
         }
     ]
   return (

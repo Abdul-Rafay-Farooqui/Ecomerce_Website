@@ -7,16 +7,16 @@ import './Slider.css';
 const SliderImages = () => {
   const images = [
     {
-      image: require("../images/slider-pic-1.jpg")
+      image: require("./images/slider-pic-1.jpg")
     },
     {
-      image: require("../images/slider-pic-2.jpg")
+      image: require("./images/slider-pic-2.jpg")
     },
     {
-      image: require("../images/slider-pic-3.jpg")
+      image: require("./images/slider-pic-3.jpg")
     },
     {
-      image: require("../images/bannar.jpg")
+      image: require("./images/bannar.jpg")
     }
   ];
 

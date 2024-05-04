@@ -1,9 +1,55 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Card, CardContent, Input, Typography } from '@mui/material';
 import "../components/Other.css";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from '../auth/AuthContext';
+import { Toaster, toast } from 'react-hot-toast';
+
 
 const LogIn = () => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onSubmit = () => {
+
+    const data = {
+        "email": email,
+        "password" : password, 
+    }
+    axios.post("http://localhost:5000/api/login",data, {
+      ContentType : "application/json"
+    })
+    .then((res) => {
+      toast.success(`Login Successfully.\nWelcome Back! ${res?.data?.user?.name}.`,
+        {
+          duration: 3000,
+          style: {
+              borderRadius: '10px',
+              background: '#333',
+              color: '#fff',
+            },
+        }
+      )
+        // login(res?.data?.user);
+
+    })
+    .catch((err) => {
+      toast.error(`Error: ${err?.response?.data?.error}`,
+                    {
+                        duration: 3000,
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                          },
+                    }
+                )
+        console.log(err)
+    })
+  }
+
   const cardStyle = {
     backgroundColor: "#242424",
     maxWidth: 400,
@@ -23,6 +69,10 @@ const LogIn = () => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <Card style={cardStyle}>
         <CardContent>
           <Typography>
@@ -39,15 +89,22 @@ const LogIn = () => {
             style={inputStyle}
             type='Email'
             placeholder='Email or Phone Number'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <Input
             style={inputStyle}
             type='Password'
             placeholder='Password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <div className='login-div'>
             <Button
               style={{ backgroundColor: "#fff", color: "#242424" }}
+              onClick={onSubmit}
             >
               Log In
             </Button>
