@@ -29,7 +29,7 @@ const Navbar = () => {
     <div style={{ width: 230 , }}>
       <CloseIcon onClick={toggleDrawer} sx={{float:"right", fontSize:"2rem", padding: "1rem", cursor: "pointer"}}/>
       <Link to="/" className='side-link' onClick={toggleDrawer}>Home</Link>
-      <Link to="/product" className='side-link' onClick={toggleDrawer}>Product</Link>
+      <Link to="/products" className='side-link' onClick={toggleDrawer}>Product</Link>
       <Link to="/signup" className='side-link' onClick={toggleDrawer}>SignUp</Link>
     </div>
   );
@@ -76,7 +76,7 @@ const Navbar = () => {
               <Link className="nav-links" to="/">
                 Home
               </Link>
-              <Link className="nav-links" to="/product">
+              <Link className="nav-links" to="/products">
                 Products
               </Link>
               <Link className="nav-links" to="/signup">

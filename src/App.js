@@ -10,6 +10,7 @@ import LogIn from "./pages/LogIn";
 import { Provider } from "react-redux";
 import store from "./redux/Store";
 import Cart from "./pages/Cart";
+import ProductDetails from "./pages/Bag";
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/log-in" element={<LogIn/>} />
         <Route path="/signup" element={<SignUp/>} />
-        <Route path="/product" element={<Product/>} />
+        <Route path="/products" element={<Product/>} />
         <Route path="/cart" element={<Cart/>} />
+        <Route path="/product-details" element={<ProductDetails/>} />
 
       </Routes>
       <Footer/>

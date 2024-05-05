@@ -3,6 +3,9 @@ import React from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { addToCart } from '../redux/reducers/cartActions';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { hover } from '@testing-library/user-event/dist/hover';
+
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
@@ -12,25 +15,25 @@ const Product = ({ product }) => {
   const data = [
     {
       id: "1",
-      picture: require("../components/images/prdouct-img1.jpg"),
-      name: "Gucci Bag",
-      price: 956
+      picture: require("../components/images/bags.jpg"),
+      name: "Addidas Bag",
+      price: 956,
     },
     {
       id: "2",
-      picture: require("../components/images/prdouct-img2.jpg"),
+      picture: require("../components/images/speakers.jpg"),
       name: "Speakers",
       price: 1960
     },
     {
       id: "3",
-      picture: require("../components/images/prdouct-img3.jpg"),
+      picture: require("../components/images/controller.jpg"),
       name: "Controller",
       price: 500
     },
     {
       id: "4",
-      picture: require("../components/images/product-img4.jpg"),
+      picture: require("../components/images/suit.jpg"),
       name: "Suit",
       price: 1000
     },
@@ -41,25 +44,25 @@ const Product = ({ product }) => {
   const data2 = [
     {
       id: "5",
-      picture: require("../components/images/data2-img1.jpg"),
+      picture: require("../components/images/laptop.webp"),
       name: "Laptop",
       price: 3200
     },
     {
       id: "6",
-      picture: require("../components/images/data2-img2.jpg"),
+      picture: require("../components/images/keyboard.webp"),
       name: "Keyboard",
       price: 500
     },
     {
       id: "7",
-      picture: require("../components/images/data2-img3.jpg"),
+      picture: require("../components/images/moniter.webp"),
       name: "Moniter",
       price: 1000
     },
     {
       id: "8",
-      picture: require("../components/images/data2-img4.jpg"),
+      picture: require("../components/images/phone.webp"),
       name: "Phone",
       price: 1500
     },
@@ -70,6 +73,9 @@ const Product = ({ product }) => {
     padding: 0,
     backgroundColor: "#242424",
     boxShadow: "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px",
+    hover:{
+      transform: 'scale(1.02)'
+    }
   };
 
   const cardMediaStyle = {
@@ -111,12 +117,13 @@ const Product = ({ product }) => {
       <Grid container spacing={2} p={2}>
         {data.map((card) => (
           <Grid item xs={6} sm={3} key={card.name} style={gridItemStyle}>
+            <Link to='/product-details'>
             <Card sx={cardStyle}>
               <CardMedia
                 sx={cardMediaStyle}
                 image={card.picture}
                 title="Card"
-              />
+                />
               <CardContent>
                 <Button onClick={() => handleAddToCart(card)} sx={addButtonStyle}>
                   <ShoppingCartIcon />
@@ -130,6 +137,7 @@ const Product = ({ product }) => {
                 </Typography>
               </CardContent>
             </Card>
+            </Link>
           </Grid>
         ))}
       </Grid>
