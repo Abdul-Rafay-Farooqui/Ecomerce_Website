@@ -1,85 +1,74 @@
-import { Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
-import React from 'react'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { addToCart } from '../redux/reducers/cartActions';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { hover } from '@testing-library/user-event/dist/hover';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@mui/material";
+import React from "react";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { addToCart } from "../redux/reducers/cartActions";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { BASEURL } from "../base.js";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useQuery } from "../hooks/custom.js";
+import Skeleton from "@mui/material/Skeleton";
+import PropTypes from "prop-types";
 
+const Product = () => {
+  const query = useQuery();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const Product = ({ product }) => {
+  useEffect(() => {
+    const category_id = query.get("c");
+
+    let url;
+
+    if (category_id) {
+      url = `${BASEURL}/product/category/${category_id}`;
+    } else {
+      url = `${BASEURL}/product`;
+    }
+
+    const fetchproducts = async () => {
+      await axios.get(url).then((res) => {
+        setProducts(res?.data);
+        setLoading(false);
+      });
+    };
+
+    setTimeout(() => {
+      fetchproducts();
+    }, 1000);
+  }, [query]);
+
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
-     dispatch(addToCart(product))
+    dispatch(addToCart(product));
   };
-  const data = [
-    {
-      id: "1",
-      picture: require("../components/images/bags.jpg"),
-      name: "Addidas Bag",
-      price: 956,
-    },
-    {
-      id: "2",
-      picture: require("../components/images/speakers.jpg"),
-      name: "Speakers",
-      price: 1960
-    },
-    {
-      id: "3",
-      picture: require("../components/images/controller.jpg"),
-      name: "Controller",
-      price: 500
-    },
-    {
-      id: "4",
-      picture: require("../components/images/suit.jpg"),
-      name: "Suit",
-      price: 1000
-    },
-
-  
-  ];
-
-  const data2 = [
-    {
-      id: "5",
-      picture: require("../components/images/laptop.webp"),
-      name: "Laptop",
-      price: 3200
-    },
-    {
-      id: "6",
-      picture: require("../components/images/keyboard.webp"),
-      name: "Keyboard",
-      price: 500
-    },
-    {
-      id: "7",
-      picture: require("../components/images/moniter.webp"),
-      name: "Moniter",
-      price: 1000
-    },
-    {
-      id: "8",
-      picture: require("../components/images/phone.webp"),
-      name: "Phone",
-      price: 1500
-    },
-  ];
 
   const cardStyle = {
     maxWidth: 700,
     padding: 0,
     backgroundColor: "#242424",
-    boxShadow: "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px",
-    hover:{
-      transform: 'scale(1.02)'
-    }
+    boxShadow:
+      "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px",
+    hover: {
+      transform: "scale(1.02)",
+    },
   };
 
   const cardMediaStyle = {
-    height: 200,
+    width: "90%",
+    height: 300,
+    objectFit: "contain",
+    backgroundColor: "#fff",
+    padding: "1rem",
   };
 
   const addButtonStyle = {
@@ -89,94 +78,76 @@ const Product = ({ product }) => {
     ":hover": { backgroundColor: "#242424", color: "#fff" },
   };
 
-  const productNameStyle = {
-    color: "#fff",
-    textAlign: "center",
-    pt: "5px",
-  };
-
-  const productPriceStyle = {
-    color: "#fff",
-    marginLeft: "43%",
-  };
-
   const gridItemStyle = {
-    marginBottom: '10px',
+    marginBottom: "10px",
   };
 
   return (
     <>
       {/* WhishList Title */}
-      <Grid container sx={{ backgroundColor: "#242424", color: "#fff", marginTop: "4rem" }} padding={2}>
-        <Typography>
-          WhishList
-        </Typography>
+      <Grid
+        container
+        sx={{ backgroundColor: "#242424", color: "#fff" }}
+        padding={2}
+      >
+        <Typography>Products</Typography>
       </Grid>
 
       {/* WhishList Grid */}
       <Grid container spacing={2} p={2}>
-        {data.map((card) => (
-          <Grid item xs={6} sm={3} key={card.name} style={gridItemStyle}>
-            <Link to='/product-details'>
-            <Card sx={cardStyle}>
-              <CardMedia
-                sx={cardMediaStyle}
-                image={card.picture}
-                title="Card"
-                />
-              <CardContent>
-                <Button onClick={() => handleAddToCart(card)} sx={addButtonStyle}>
-                  <ShoppingCartIcon />
-                  Add to Cart
-                </Button>
-                <Typography variant="body1" sx={productNameStyle}>
-                  {card.name}
-                </Typography>
-                <Typography variant='boby2' sx={productPriceStyle}>
-                  ${card.price}
-                </Typography>
-              </CardContent>
-            </Card>
-            </Link>
-          </Grid>
-        ))}
-      </Grid>
+        {(loading ? Array.from(new Array(8)) : products).map((product) => (
+          <Grid
+            item
+            xs={6}
+            sm={6}
+            md={4}
+            lg={3}
+            key={product?.id}
+            style={gridItemStyle}
+          >
+            {!loading ? (
+              <Link
+                to={`/product-details?c=${product?.id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <Card sx={cardStyle}>
+                  <CardMedia
+                    component="img"
+                    sx={cardMediaStyle}
+                    image={
+                      product?.image
+                        ? product.image
+                        : require("../components/images/default.jpg")
+                    }
+                    title={product?.name}
+                  />
 
-      {/* Just for you Title */}
-      <Grid container sx={{ backgroundColor: "#242424", color: "#fff" }} padding={2}>
-        <Typography>
-          Just for you
-        </Typography>
-      </Grid>
-
-      {/* Just for you Grid */}
-      <Grid container spacing={2} p={2}>
-        {data2.map((card) => (
-          <Grid item xs={6} sm={3} key={card.name} style={gridItemStyle}>
-            <Card sx={cardStyle}>
-              <CardMedia
-                sx={cardMediaStyle}
-                image={card.picture}
-                title="Card"
-              />
-              <CardContent>
-                <Button onClick={() => handleAddToCart(card)} sx={addButtonStyle}>
-                  <ShoppingCartIcon />
-                  Add to Cart
-                </Button>
-                <Typography variant="body1" sx={productNameStyle}>
-                  {card.name}
-                </Typography>
-                <Typography variant='boby2' sx={productPriceStyle}>
-                  {card.price}
-                </Typography>
-              </CardContent>
-            </Card>
+                  <CardContent>
+                    <Typography
+                      variant="h6"
+                      color="white"
+                      textAlign="center"
+                      pt="5px"
+                    >
+                      {product?.name}
+                    </Typography>
+                    <Typography variant="h6" color="white" textAlign="center">
+                      ${product?.price}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
+            ) : (
+              <>
+                <Skeleton variant="rectangular" height={300} />
+                <Skeleton variant="rectangular" height={50} />
+              </>
+            )}
           </Grid>
         ))}
       </Grid>
     </>
-  )
-}
+  );
+};
 
 export default Product;
