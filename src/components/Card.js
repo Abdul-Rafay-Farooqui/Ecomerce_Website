@@ -36,7 +36,7 @@ const MediaCard = () => {
     <Grid container spacing={2} p={2} mt={1}>
       {data.map((card) => (
         <Grid item xs={6}>
-          <Link to="/product" className="link-cards">
+          <Link to="/products" className="link-cards">
             <Card
               className="cards"
               sx={{
